@@ -10,12 +10,25 @@ import UIKit
 class ViewController: UIViewController {
 
     // MARK: - Outlets
+//    private lazy var imageView: UIImageView = {
+//        let image = UIImage(named: "fon")
+//        let imageView = UIImageView(image: image)
+//        imageView.clipsToBounds = true
+//        imageView.backgroundColor = .systemGray
+//
+//        return imageView
+//    }()
+
 
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+//        view.backgroundColor = .blue
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.blue.cgColor, UIColor.white.cgColor]
+        view.layer.addSublayer(gradient)
     }
 
     // MARK: - Setup
