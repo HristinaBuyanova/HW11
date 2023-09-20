@@ -9,10 +9,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Outlets
+
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+
+    // MARK: - Setup
+
+    private func setupHierrarchy () {
+
+    }
+
+    private func setupLayout () {
+
+    }
+
+
+    // MARK: - Actions
 
 
 }
