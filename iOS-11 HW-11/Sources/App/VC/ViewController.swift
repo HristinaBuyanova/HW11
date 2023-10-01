@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         return label
     }()
 
-
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = 20
@@ -52,14 +51,22 @@ class ViewController: UIViewController {
         return textField
     }()
 
-//    private lazy var loginButton: UIButton = {
-//        let button = UIButton()
-//        button.titleLabel = .
-//        button.tintColor = .systemBlue
-//        button.layer.cornerRadius = 20
-//
-//        return button
-//    }()
+    private lazy var loginButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .blue
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 20
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
 //    private lazy var stackTextField: UIStackView = {
 //        let stack = UIStackView()
@@ -95,6 +102,7 @@ class ViewController: UIViewController {
         view.addSubview(labelLogin)
         view.addSubview(loginTextField)
         view.addSubview(passwordTextFiel)
+        view.addSubview(loginButton)
     }
 
     private func setupLayout () {
@@ -111,6 +119,11 @@ class ViewController: UIViewController {
             passwordTextFiel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             passwordTextFiel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             passwordTextFiel.heightAnchor.constraint(equalToConstant: 44),
+
+            loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 30),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            loginButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 
@@ -121,6 +134,8 @@ class ViewController: UIViewController {
 
 
 }
+
+    // MARK: - Extension
 
 extension UITextField {
     func setLeftIcon(_ image: UIImage) {
