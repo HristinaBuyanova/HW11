@@ -159,21 +159,6 @@ class ViewController: UIViewController {
         return stack
     }()
 
-
-
-//    private lazy var stackTextField: UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .vertical
-//        stack.alignment = .center
-//        stack.distribution = .fillProportionally
-//        stack.spacing = 5
-//        stack.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return stack
-//    }()
-
-
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -250,11 +235,7 @@ class ViewController: UIViewController {
         ])
     }
 
-
-
-
     // MARK: - Actions
-
 
 }
 
