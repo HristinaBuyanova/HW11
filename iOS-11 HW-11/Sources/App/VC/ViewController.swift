@@ -81,8 +81,12 @@ class ViewController: UIViewController {
 
     private lazy var labelTextDontHaveAccount: UILabel = {
         let label = UILabel()
-        label.text = "Dont have account? Sing up"
         label.textColor = .systemGray
+        let text = "Dont have account? Sing up"
+        let atributedText = NSMutableAttributedString(string: text)
+        let range = (text as NSString).range(of: "Sing up")
+        atributedText.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
+        label.attributedText = atributedText
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .center
         label.numberOfLines = 1
@@ -115,6 +119,44 @@ class ViewController: UIViewController {
         stripe.layer.cornerRadius = 20
         stripe.translatesAutoresizingMaskIntoConstraints = false
         return stripe
+    }()
+
+    private lazy var facebookButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemIndigo
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(named: "facebook")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 2, bottom: 10, right: 100)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private lazy var twitterButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .blue
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        button.setTitle("Twitter", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(named: "twitter")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 2, bottom: 10, right: 100)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private lazy var socialStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [facebookButton, twitterButton])
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.spacing = 20
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
 
 
@@ -159,6 +201,7 @@ class ViewController: UIViewController {
         view.addSubview(labelTextOrConnectWith)
         view.addSubview(stripeFirst)
         view.addSubview(stripeSecond)
+        view.addSubview(socialStack)
     }
 
     private func setupLayout () {
@@ -198,7 +241,12 @@ class ViewController: UIViewController {
             stripeSecond.bottomAnchor.constraint(equalTo: labelTextDontHaveAccount.topAnchor, constant: -100),
             stripeSecond.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             stripeSecond.leadingAnchor.constraint(equalTo: labelTextOrConnectWith.trailingAnchor, constant: 10),
-            stripeSecond.heightAnchor.constraint(equalToConstant: 1)
+            stripeSecond.heightAnchor.constraint(equalToConstant: 1),
+
+            socialStack.bottomAnchor.constraint(equalTo: labelTextDontHaveAccount.topAnchor, constant: -30),
+            socialStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            socialStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            socialStack.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 
@@ -235,4 +283,5 @@ extension UITextField {
         rightViewMode = .always
     }
 }
+
 
