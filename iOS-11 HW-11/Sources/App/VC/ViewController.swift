@@ -68,6 +68,17 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var labelTextAfterButton: UILabel = {
+        let label = UILabel()
+        label.text = "Forget your password?"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
 //    private lazy var stackTextField: UIStackView = {
 //        let stack = UIStackView()
 //        stack.axis = .vertical
@@ -103,6 +114,7 @@ class ViewController: UIViewController {
         view.addSubview(loginTextField)
         view.addSubview(passwordTextFiel)
         view.addSubview(loginButton)
+        view.addSubview(labelTextAfterButton)
     }
 
     private func setupLayout () {
@@ -120,10 +132,13 @@ class ViewController: UIViewController {
             passwordTextFiel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             passwordTextFiel.heightAnchor.constraint(equalToConstant: 44),
 
-            loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 30),
+            loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 40),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginButton.heightAnchor.constraint(equalToConstant: 44)
+            loginButton.heightAnchor.constraint(equalToConstant: 44),
+
+            labelTextAfterButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
+            labelTextAfterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 
