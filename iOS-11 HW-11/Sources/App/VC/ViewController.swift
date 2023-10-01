@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let textField = UITextField()
         textField.layer.cornerRadius = 20
         textField.textColor = .darkGray
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.placeholder = "keanureeves01"
         textField.backgroundColor = .white
         textField.returnKeyType = .next
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         let textField = UITextField()
         textField.layer.cornerRadius = 20
         textField.textColor = .darkGray
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.placeholder = "Password"
         textField.backgroundColor = .white
         textField.returnKeyType = .next
@@ -79,6 +79,46 @@ class ViewController: UIViewController {
         return label
     }()
 
+    private lazy var labelTextDontHaveAccount: UILabel = {
+        let label = UILabel()
+        label.text = "Dont have account? Sing up"
+        label.textColor = .systemGray
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var labelTextOrConnectWith: UILabel = {
+        let label = UILabel()
+        label.text = "or connect with"
+        label.textColor = .systemGray
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var stripeFirst: UIView = {
+        let stripe = UIView()
+        stripe.backgroundColor = .systemGray4
+        stripe.layer.cornerRadius = 20
+        stripe.translatesAutoresizingMaskIntoConstraints = false
+        return stripe
+    }()
+
+    private lazy var stripeSecond: UIView = {
+        let stripe = UIView()
+        stripe.backgroundColor = .systemGray4
+        stripe.layer.cornerRadius = 20
+        stripe.translatesAutoresizingMaskIntoConstraints = false
+        return stripe
+    }()
+
+
+
 //    private lazy var stackTextField: UIStackView = {
 //        let stack = UIStackView()
 //        stack.axis = .vertical
@@ -115,6 +155,10 @@ class ViewController: UIViewController {
         view.addSubview(passwordTextFiel)
         view.addSubview(loginButton)
         view.addSubview(labelTextAfterButton)
+        view.addSubview(labelTextDontHaveAccount)
+        view.addSubview(labelTextOrConnectWith)
+        view.addSubview(stripeFirst)
+        view.addSubview(stripeSecond)
     }
 
     private func setupLayout () {
@@ -138,7 +182,23 @@ class ViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 44),
 
             labelTextAfterButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
-            labelTextAfterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            labelTextAfterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            labelTextDontHaveAccount.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            labelTextDontHaveAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            labelTextOrConnectWith.bottomAnchor.constraint(equalTo: labelTextDontHaveAccount.topAnchor, constant: -94),
+            labelTextOrConnectWith.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            stripeFirst.bottomAnchor.constraint(equalTo: labelTextDontHaveAccount.topAnchor, constant: -100),
+            stripeFirst.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            stripeFirst.trailingAnchor.constraint(equalTo: labelTextOrConnectWith.leadingAnchor, constant: -10),
+            stripeFirst.heightAnchor.constraint(equalToConstant: 1),
+
+            stripeSecond.bottomAnchor.constraint(equalTo: labelTextDontHaveAccount.topAnchor, constant: -100),
+            stripeSecond.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            stripeSecond.leadingAnchor.constraint(equalTo: labelTextOrConnectWith.trailingAnchor, constant: 10),
+            stripeSecond.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
 
@@ -157,7 +217,7 @@ extension UITextField {
         let iconView = UIImageView(frame: CGRect(x: 20, y: 5, width: 20, height: 20))
         iconView.image = image
         iconView.tintColor = .systemGray
-        let iconContainerView: UIView = UIView(frame: CGRect(x: 30, y: 0, width: 30, height: 30))
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 30, y: 0, width: 50, height: 30))
         iconContainerView.addSubview(iconView)
         leftView = iconContainerView
         leftViewMode = .always
@@ -166,10 +226,10 @@ extension UITextField {
 
 extension UITextField {
     func setRightIcon(_ image: UIImage) {
-        let iconView = UIImageView(frame: CGRect(x: -20, y: 5, width: 20, height: 20))
+        let iconView = UIImageView(frame: CGRect(x: -10, y: 5, width: 20, height: 20))
         iconView.image = image
         iconView.tintColor = .systemMint
-        let iconContainerView: UIView = UIView(frame: CGRect(x: -30, y: 0, width: 30, height: 30))
+        let iconContainerView: UIView = UIView(frame: CGRect(x: -20, y: 0, width: 30, height: 30))
         iconContainerView.addSubview(iconView)
         rightView = iconContainerView
         rightViewMode = .always
